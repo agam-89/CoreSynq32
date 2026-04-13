@@ -18,7 +18,7 @@ https://github.com/user-attachments/assets/your-video-id-here
 
 ## Overview
 
-StepSynq is an 8-step programmable drum sequencer built on the ESP32. It plays back real WAV drum samples (kick, snare, hi-hat) through the ESP32's onboard DAC into an LM386 amplifier and speaker. Patterns are programmed live via tactile buttons and visualized on an SSD1306 OLED display.
+CoreSynq32 is an 8-step programmable drum sequencer built on the ESP32. It plays back real WAV drum samples (kick, snare, hi-hat) through the ESP32's onboard DAC into an LM386 amplifier and speaker. Patterns are programmed live via tactile buttons and visualized on an SSD1306 OLED display.
 
 The project is built around a concurrent FreeRTOS task architecture — sequencer timing, audio playback, and UI all run as independent tasks communicating via shared state and critical sections, rather than a single blocking loop.
 
@@ -127,6 +127,22 @@ ESP32 Flash → Timer ISR → dacWrite(GPIO 25) → 10µF cap → LM386 → 250�
 
 ---
 
+## Custom Samples
+
+`samples.h` is generated from your own WAV files using the script in `/tools/wav_to_c.py`. To swap in your own drum sounds:
+
+1. Export your WAV files from Audacity as **8-bit unsigned PCM, mono, 22050Hz**
+2. Place them in the same folder as `wav_to_c.py`
+3. Update the filenames in the script and run it:
+```
+python wav_to_c.py
+```
+4. Paste the output into `samples.h`, replacing the existing arrays
+
+Any short one-shot drum sample works — keep them under 1 second to avoid flash memory issues.
+
+---
+
 ## Repository Structure
 
 ```
@@ -135,7 +151,12 @@ CoreSynq32/
 │   ├── drum_mchn.ino       # Main source
 │   └── samples.h           # WAV sample arrays (kick, snare, hihat)
 ├── schematics/
+│   ├── wokwi_diagram.png   # Full system schematic (ESP32 + OLED + buttons)
 │   └── lm386_amp.kicad_sch # LM386 amplifier circuit
+├── tools/
+│   └── wav_to_c.py         # Converts WAV files to C byte arrays for samples.h
+├── demo/
+│   └── demo.mp4
 └── README.md
 ```
 
