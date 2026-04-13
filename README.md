@@ -8,7 +8,7 @@
 
 
 
-https://github.com/user-attachments/assets/your-video-id-here
+[![CoreSynq32 Demo](https://img.youtube.com/vi/T27PNiOOfRY/0.jpg)](https://www.youtube.com/watch?v=T27PNiOOfRY)
 
 
 
