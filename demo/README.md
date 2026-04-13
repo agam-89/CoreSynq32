@@ -2,7 +2,7 @@
 
 Demo footage of CoreSynq32 running on hardware.
 
-## demo.mp4
+## drum_machine_demo.mp4
 
 Live demonstration showing:
 - Programming a beat pattern across kick, snare, and hi-hat tracks
