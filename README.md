@@ -42,7 +42,7 @@ The project is built around a concurrent FreeRTOS task architecture — sequence
 |-----------|---------|
 | ESP32 DevKit V1 | Main microcontroller |
 | SSD1306 OLED | 128×64, I2C |
-| Tactile push buttons | ×8 step + ×4 control |
+| Tactile push buttons | ×4 step + ×4 control |
 | Potentiometer | BPM control, GPIO 34 |
 | LM386 amplifier | Audio output stage |
 | Speaker | Salvaged desktop speaker |
@@ -114,7 +114,7 @@ Amplifier circuit schematic (LM386 + coupling caps) is included in `/schematics`
 
 ```
 WAV files → Audacity (8-bit unsigned, mono, 22050Hz) → Python → C byte arrays → samples.h
-ESP32 Flash → Timer ISR → dacWrite(GPIO 25) → 10µF cap → LM386 → 250µF cap → Speaker
+ESP32 Flash → Timer ISR → dacWrite(GPIO 25) → LM386 → 1000µF cap → Speaker
 ```
 
 ---
@@ -152,11 +152,11 @@ CoreSynq32/
 │   └── samples.h           # WAV sample arrays (kick, snare, hihat)
 ├── schematics/
 │   ├── wokwi_diagram.png   # Full system schematic (ESP32 + OLED + buttons)
-│   └── lm386_amp.kicad_sch # LM386 amplifier circuit
+│   └── 386amp.kicad_sch    # LM386 amplifier circuit
 ├── tools/
 │   └── wav_to_c.py         # Converts WAV files to C byte arrays for samples.h
 ├── demo/
-│   └── demo.mp4
+│   └── drum_machine_demo.mp4
 └── README.md
 ```
 
