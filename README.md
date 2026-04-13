@@ -12,7 +12,7 @@
 
 
 
-> Replace the link above with your actual demo video after uploading it to the repo.
+
 
 ---
 
